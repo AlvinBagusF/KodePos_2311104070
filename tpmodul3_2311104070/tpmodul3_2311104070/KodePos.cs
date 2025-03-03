@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 class KodePos
@@ -26,29 +26,24 @@ class KodePos
             Console.WriteLine($"{entry.Key}: {entry.Value}");
         }
     }
-
-    public static string GetKodePos(string kelurahan)
-    {
-        if (kodePosMap.TryGetValue(kelurahan, out string kodePos))
-        {
-            return kodePos;
-        }
-        return "Kode pos tidak ditemukan";
-    }
 }
 
-// Contoh penggunaan
 class Program
 {
     static void Main()
     {
-        // Menampilkan semua kode pos
+        // Menampilkan semua kode pos tanpa input
         KodePos.TampilkanSemuaKodePos();
 
-        // Mencari kode pos berdasarkan kelurahan
-        Console.WriteLine("\nKode pos Batununggal: " + KodePos.GetKodePos("Batununggal"));
-        Console.WriteLine("Kode pos Wates: " + KodePos.GetKodePos("Wates"));
-        Console.WriteLine("Kode pos TidakAda: " + KodePos.GetKodePos("TidakAda"));
+        // Program Door Machine
+        Console.WriteLine("\n===== PROGRAM DOOR MACHINE =====");
+        DoorMachine pintu = new DoorMachine();
+
+        pintu.CurrentState();  // Menampilkan status awal
+        pintu.ToggleLock();    // Mengubah status kunci
+        pintu.OpenDoor();      // Mencoba membuka pintu
+        pintu.CloseDoor();     // Menutup pintu kembali
+        pintu.ToggleLock();    // Mengunci pintu kembali
 
         Console.WriteLine("\nProgram selesai. Tekan Enter untuk keluar.");
         Console.ReadLine();
